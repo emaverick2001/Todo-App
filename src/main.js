@@ -51,8 +51,6 @@ function renderTodos() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", renderTodos)
-
 
 /*
 
@@ -119,3 +117,14 @@ function handleAddNewTodo(event) {
   </nav>
 
   */
+
+const navBar = document.getElementById("todo-nav")
+navBar.classList.add("p-6", "border-2", "border-red-500")
+navBar.addEventListener("click", handleClickOnNavbar)
+
+function handleClickOnNavbar(event) {
+console.log(event);
+}
+
+
+document.addEventListener("DOMContentLoaded", renderTodos)
