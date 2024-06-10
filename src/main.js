@@ -57,7 +57,6 @@ function renderTodos() {
       if (todo.completed) {
         todoText.classList.add("line-through");
       }
-      
       todoText.innerText = todo.text;
       todoText.id = `todo-text-${todo.id}`;
       todoItem.appendChild(todoText)
@@ -198,6 +197,29 @@ const todoList = document.getElementById("todo-list");
 todoList.classList.add("p-6", "border-2", "border-red-500")
 todoList.addEventListener("click", handleClickOnTodoList)
 
-// function handleClickOnTodoList(event) {
-//   // console.log(event);
-//   let todo = null;
+function handleClickOnTodoList(event) {
+  // console.log(event);
+  let todo = null;
+  if (event.target.id !== null && event.target.id.includes("todo-text")) {
+    todo = event.target;
+  }
+  // console.log(todo);
+
+  let todoIdNumber = -1;
+  if (todo) {
+    const todoId = todo.id.split("-").pop()
+    todoIdNumber = Number(todoId);
+  }
+
+  // console.log(todoIdNumber)
+
+  for(let i = 0; i < todos.length; i++) {
+    if (todos[i].id === todoIdNumber) {
+      // console.log(todos[i].completed)
+      todos[i].completed = !todos[i].completed;
+      // console.log(todos[i].completed)
+    }
+  }
+
+  renderTodos();
+}
